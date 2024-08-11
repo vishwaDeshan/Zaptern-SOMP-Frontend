@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
 import { ViewsModule } from './views/views.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { ViewsModule } from './views/views.module';
     LayoutModule,
     SharedModule,
     ViewsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],
