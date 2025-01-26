@@ -6,13 +6,18 @@
       [ngClass]="{ 'is-invalid': errorMessage }"
       [placeholder]="placeholder"
       [value]="formattedDate"
+      [disabled]="isDisabled"
       readonly
       (click)="toggleDatePicker()"
     />
     <label>
       {{ label }}<span *ngIf="isRequired" class="text-danger"><b>*</b></span>
     </label>
-    <div class="input-icon" (click)="toggleDatePicker()">
+    <div
+      [ngClass]="{ 'is-disabled-icon': isDisabled }"
+      class="input-icon"
+      (click)="toggleDatePicker()"
+    >
       <i class="bi bi-calendar3"></i>
     </div>
     <div *ngIf="errorMessage" class="text-danger">

@@ -17,7 +17,11 @@
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="educationForm" (ngSubmit)="onSubmit()">
+        <form
+          *ngIf="educationForm"
+          [formGroup]="educationForm"
+          (ngSubmit)="onSubmit()"
+        >
           <div class="mb-3 form-floating">
             <input
               type="text"
@@ -26,7 +30,9 @@
               formControlName="instituteName"
               placeholder="Institute Name"
             />
-            <label for="instituteName" class="form-label">Institute Name</label>
+            <label for="instituteName" class="form-label"
+              >Institute Name<span class="text-danger"><b>*</b></span></label
+            >
             <div
               *ngIf="
                 educationForm.get('instituteName')?.invalid &&
@@ -39,22 +45,17 @@
           </div>
 
           <div class="mb-3 form-floating">
-            <input
-              type="date"
-              id="startDate"
-              class="form-control"
-              formControlName="startDate"
-              placeholder="Start Date"
-            />
-            <label for="startDate" class="form-label">Start Date</label>
-            <div
-              *ngIf="
-                educationForm.get('startDate')?.invalid &&
-                educationForm.get('startDate')?.touched
-              "
-              class="text-danger"
-            >
-              Start Date is required.
+            <div class="col-md-12">
+              <somp-date-picker
+                [selectedDate]="
+                  convertToNgbDateStruct(educationForm?.get('startDate')?.value)
+                "
+                [label]="'Start Date'"
+                [placeholder]="'dd/mm/yyyy'"
+                [isRequired]="true"
+                [errorMessage]="errorMsgs['startDate']"
+                (dateChange)="onStartDateChange($event)"
+              ></somp-date-picker>
             </div>
           </div>
 
@@ -73,16 +74,22 @@
             </div>
           </div>
 
-          <div class="mb-3 form-floating">
-            <input
-              type="date"
-              id="endDate"
-              class="form-control"
-              [disabled]="true"
-              formControlName="endDate"
-              placeholder="End Date"
-            />
-            <label for="endDate" class="form-label">End Date</label>
+          <div
+            class="mb-3 form-floating"
+            *ngIf="!educationForm.get('isDoing')?.value"
+          >
+            <div class="col-md-12">
+              <somp-date-picker
+                [selectedDate]="
+                  convertToNgbDateStruct(educationForm?.get('endDate')?.value)
+                "
+                [label]="'End Date'"
+                [placeholder]="'dd/mm/yyyy'"
+                [isRequired]="false"
+                [errorMessage]="errorMsgs['endDate']"
+                (dateChange)="onEndDateChange($event)"
+              ></somp-date-picker>
+            </div>
           </div>
 
           <div class="mb-3 form-floating">

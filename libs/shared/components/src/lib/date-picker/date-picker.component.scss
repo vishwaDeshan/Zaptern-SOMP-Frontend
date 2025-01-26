@@ -1,6 +1,10 @@
 .date-picker {
     position: relative;
     
+    .is-disabled-icon{
+      cursor: not-allowed !important;
+      z-index: 9999 !important;
+    }
     .form-floating {
       display: flex;
       align-items: center;

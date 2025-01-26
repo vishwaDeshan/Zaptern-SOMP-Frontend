@@ -6,10 +6,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import {
   TimeLineComponent,
   FormContainerComponent,
+  DatePickerComponent,
 } from '@zaptern-somp-frontend/components';
+import { ErrorMessageProcessor } from '@zaptern-somp-frontend/services';
+import { ALPHANUMERIC_SPECIAL_REGEX } from '@zaptern-somp-frontend/helpers';
+import { end, start } from '@popperjs/core';
 
 @Component({
   selector: 'somp-educational-background-form',
@@ -21,25 +26,61 @@ import {
     TimeLineComponent,
     FormContainerComponent,
     ReactiveFormsModule,
+    DatePickerComponent,
   ],
 })
 export class EducationalBackgroundFormComponent {
-  educationForm: FormGroup;
+  educationForm: FormGroup | undefined;
   isModalOpen: boolean = false;
   isDoing: boolean = false;
   editEducationDetailsId: string | undefined;
+  errorMsgs: { [key: string]: string } = {};
+  private validationMessages: { [key: string]: { [key: string]: string } };
+  private formErrorMsgProcessor: ErrorMessageProcessor | undefined;
 
   constructor(private fb: FormBuilder) {
+    this.validationMessages = {
+      instituteName: {
+        required: 'Institution/school/Unversity name is required',
+        pattern: 'Please use only letters, numbers and special characters.',
+      },
+      startDate: {
+        required: 'Start date is required',
+        pattern: 'Please enter valid date.',
+      },
+      endDate: {
+        pattern: 'Please enter valid date.',
+      },
+      description: {
+        maxlength: 'Description cannot exceed 250 characters.',
+        pattern: 'Please use only letters, numbers and special characters.',
+      },
+      isDoing: {},
+    };
+  }
+
+  private initForm(): void {
     this.educationForm = this.fb.group({
-      instituteName: ['', Validators.required],
-      startDate: ['', Validators.required],
+      instituteName: [
+        '',
+        [Validators.required, Validators.pattern(ALPHANUMERIC_SPECIAL_REGEX)],
+      ],
+      startDate: ['', [Validators.required]],
       endDate: [''],
-      description: [''],
-      isDoing: [false],
+      description: [
+        '',
+        [
+          Validators.maxLength(250),
+          Validators.pattern(ALPHANUMERIC_SPECIAL_REGEX),
+        ],
+      ],
+      isDoing: ['true'],
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initForm();
+  }
 
   openModal() {
     this.isModalOpen = true;
@@ -50,17 +91,17 @@ export class EducationalBackgroundFormComponent {
   }
 
   onResetForm() {
-    this.educationForm.reset();
+    this.educationForm?.reset();
   }
 
   onSubmit() {
-    if (this.educationForm.invalid) {
+    if (this.educationForm?.invalid) {
       return;
     }
 
-    console.log('Form Data:', this.educationForm.value);
+    console.log('Form Data:', this.educationForm?.value);
     this.closeModal();
-    this.educationForm.reset();
+    this.educationForm?.reset();
   }
 
   timelineData = [
@@ -89,4 +130,30 @@ export class EducationalBackgroundFormComponent {
       name: 'Vishwa W.',
     },
   ];
+
+  onStartDateChange(date: string | undefined): void {
+    const dateControl = this.educationForm?.get('startDate');
+    if (dateControl) {
+      dateControl.setValue(date);
+      dateControl.markAsDirty();
+      dateControl.markAsTouched();
+    }
+  }
+
+  onEndDateChange(date: string | undefined): void {
+    const dateControl = this.educationForm?.get('endDate');
+    if (dateControl) {
+      dateControl.setValue(date);
+      dateControl.markAsDirty();
+      dateControl.markAsTouched();
+    }
+  }
+
+  convertToNgbDateStruct(isoString: string): NgbDateStruct | null {
+    if (!isoString) {
+      return null;
+    }
+    const [year, month, day] = isoString.split('T')[0].split('-').map(Number);
+    return { year, month, day };
+  }
 }

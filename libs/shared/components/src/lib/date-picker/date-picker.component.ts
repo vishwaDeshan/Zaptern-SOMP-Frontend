@@ -22,6 +22,7 @@ export class DatePickerComponent {
   @Input() placeholder: string = 'dd/mm/yyyy';
   @Input() isRequired: boolean = false;
   @Input() errorMessage: string | null = null;
+  @Input() isDisabled: boolean = false;
 
   @Output() dateChange = new EventEmitter<string>();
 
