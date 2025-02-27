@@ -1,1 +1,284 @@
-<p>health info works</p>
+<somp-form-container [showRequiredInput]="true">
+  <form [formGroup]="healthForm">
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <!-- 1. Pre-existing Medical Conditions -->
+        <div class="form-floating">
+          <p>
+            Do you have any pre-existing medical conditions?
+            <span class="text-danger"><b>*</b></span>
+          </p>
+          <div class="d-flex gap-3">
+            <div class="form-check">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="medical-conditions-yes"
+                formControlName="medicalConditions"
+                value="yes"
+              />
+              <label class="form-check-label" for="medical-conditions-yes"
+                >Yes</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="medical-conditions-no"
+                formControlName="medicalConditions"
+                value="no"
+              />
+              <label class="form-check-label" for="medical-conditions-no"
+                >No</label
+              >
+            </div>
+          </div>
+          <div
+            class="col-md-12 mt-2"
+            *ngIf="healthForm.get('medicalConditions')?.value === 'yes'"
+          >
+            <div class="form-floating">
+              <textarea
+                class="form-control custom-textarea"
+                id="anyComments"
+                placeholder="Any Comments"
+                formControlName="anyComments"
+                rows="6"
+              ></textarea>
+              <label for="anyComments">Comments</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Medications -->
+        <div class="form-floating mt-3">
+          <p>
+            Are you currently taking any medications?
+            <span class="text-danger"><b>*</b></span>
+          </p>
+          <div class="d-flex gap-3">
+            <div class="form-check">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="medications-yes"
+                formControlName="medications"
+                value="yes"
+              />
+              <label class="form-check-label" for="medications-yes">Yes</label>
+            </div>
+            <div class="form-check">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="medications-no"
+                formControlName="medications"
+                value="no"
+              />
+              <label class="form-check-label" for="medications-no">No</label>
+            </div>
+          </div>
+          <div
+            class="col-md-12 mt-2"
+            *ngIf="healthForm.get('medications')?.value === 'yes'"
+          >
+            <div class="form-floating">
+              <textarea
+                class="form-control custom-textarea"
+                id="anyComments"
+                placeholder="Any Comments"
+                formControlName="anyComments"
+                rows="6"
+              ></textarea>
+              <label for="anyComments">Comments</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Allergies -->
+        <div class="form-floating mt-3">
+          <p>
+            Do you have any allergies? <span class="text-danger"><b>*</b></span>
+          </p>
+          <div class="d-flex gap-3">
+            <div class="form-check">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="allergies-yes"
+                formControlName="allergies"
+                value="yes"
+              />
+              <label class="form-check-label" for="allergies-yes">Yes</label>
+            </div>
+            <div class="form-check">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="allergies-no"
+                formControlName="allergies"
+                value="no"
+              />
+              <label class="form-check-label" for="allergies-no">No</label>
+            </div>
+          </div>
+
+          <div
+            class="col-md-12 mt-2"
+            *ngIf="healthForm.get('allergies')?.value === 'yes'"
+          >
+            <div class="form-floating">
+              <textarea
+                class="form-control custom-textarea"
+                id="anyComments"
+                placeholder="Any Comments"
+                formControlName="anyComments"
+                rows="6"
+              ></textarea>
+              <label for="anyComments">Comments</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Vaccinations -->
+        <div class="form-floating mt-3">
+          <p>
+            Have you been vaccinated for common diseases?
+            <span class="text-danger"><b>*</b></span>
+          </p>
+          <div class="d-flex gap-3">
+            <div class="form-check">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="vaccinated-yes"
+                formControlName="vaccinated"
+                value="yes"
+              />
+              <label class="form-check-label" for="vaccinated-yes">Yes</label>
+            </div>
+            <div class="form-check">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="vaccinated-no"
+                formControlName="vaccinated"
+                value="no"
+              />
+              <label class="form-check-label" for="vaccinated-no">No</label>
+            </div>
+          </div>
+          <div
+            class="col-md-12 mt-2"
+            *ngIf="healthForm.get('vaccinated')?.value === 'yes'"
+          >
+            <div class="form-floating">
+              <textarea
+                class="form-control custom-textarea"
+                id="anyComments"
+                placeholder="Any Comments"
+                formControlName="anyComments"
+                rows="6"
+              ></textarea>
+              <label for="anyComments">Comments</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Major Surgeries or Hospitalizations -->
+        <div class="form-floating mt-3">
+          <p>
+            Have you had any major surgeries or hospitalizations in the past
+            five years? <span class="text-danger"><b>*</b></span>
+          </p>
+          <div class="d-flex gap-3">
+            <div class="form-check">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="surgeries-yes"
+                formControlName="surgeries"
+                value="yes"
+              />
+              <label class="form-check-label" for="surgeries-yes">Yes</label>
+            </div>
+            <div class="form-check">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="surgeries-no"
+                formControlName="surgeries"
+                value="no"
+              />
+              <label class="form-check-label" for="surgeries-no">No</label>
+            </div>
+          </div>
+          <div
+            class="col-md-12 mt-2"
+            *ngIf="healthForm.get('surgeries')?.value === 'yes'"
+          >
+            <div class="form-floating">
+              <textarea
+                class="form-control custom-textarea"
+                id="anyComments"
+                placeholder="Any Comments"
+                formControlName="anyComments"
+                rows="6"
+              ></textarea>
+              <label for="anyComments">Comments</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Workplace Accommodations -->
+        <div class="form-floating mt-3">
+          <p>
+            Do you have any physical or mental health conditions that may
+            require workplace accommodations?
+            <span class="text-danger"><b>*</b></span>
+          </p>
+          <div class="d-flex gap-3">
+            <div class="form-check">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="accommodations-yes"
+                formControlName="accommodations"
+                value="yes"
+              />
+              <label class="form-check-label" for="accommodations-yes"
+                >Yes</label
+              >
+            </div>
+            <div class="form-check">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="accommodations-no"
+                formControlName="accommodations"
+                value="no"
+              />
+              <label class="form-check-label" for="accommodations-no">No</label>
+            </div>
+          </div>
+          <div
+            class="col-md-12 mt-2"
+            *ngIf="healthForm.get('accommodations')?.value === 'yes'"
+          >
+            <div class="form-floating">
+              <textarea
+                class="form-control custom-textarea"
+                id="anyComments"
+                placeholder="Any Comments"
+                formControlName="anyComments"
+                rows="6"
+              ></textarea>
+              <label for="anyComments">Comments</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</somp-form-container>
