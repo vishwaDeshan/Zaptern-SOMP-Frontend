@@ -21,6 +21,8 @@ import {
   PersonalDetailsEffects,
   educationalDetailsFeature,
   EducationalDetailsEffects,
+  HealthRecordsEffects,
+  healthRecordsFeature,
 } from '@zaptern-somp-frontend/data-access';
 
 export const appConfig: ApplicationConfig = {
@@ -37,10 +39,12 @@ export const appConfig: ApplicationConfig = {
     provideState(SharedStateFeature),
     provideState(educationalDetailsFeature),
     provideState(personalDetailsFeature),
+    provideState(healthRecordsFeature),
     provideEffects([
       ApplicantEffects,
       PersonalDetailsEffects,
       EducationalDetailsEffects,
+      HealthRecordsEffects,
     ]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
