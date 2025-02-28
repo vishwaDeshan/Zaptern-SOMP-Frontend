@@ -12,7 +12,7 @@ export class HealthRecordsService {
 
   getHealthRecords(id: string): Observable<HealthRecordsData> {
     return this.http.get<HealthRecordsData>(
-      `${environment.apiUrl}/health-records?Id=${id}`
+      `${environment.apiUrl}/health-records/${id}`
     );
   }
 

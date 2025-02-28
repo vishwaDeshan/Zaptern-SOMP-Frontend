@@ -16,6 +16,7 @@
                 id="medical-conditions-yes"
                 formControlName="medicalConditions"
                 value="yes"
+                [ngClass]="{ 'is-invalid': errorMsgs['medicalConditions'] }"
               />
               <label class="form-check-label" for="medical-conditions-yes"
                 >Yes</label
@@ -28,6 +29,7 @@
                 id="medical-conditions-no"
                 formControlName="medicalConditions"
                 value="no"
+                [ngClass]="{ 'is-invalid': errorMsgs['medicalConditions'] }"
               />
               <label class="form-check-label" for="medical-conditions-no"
                 >No</label
@@ -45,8 +47,17 @@
                 placeholder="Comments"
                 formControlName="medicalConditionsDetails"
                 rows="6"
+                [ngClass]="{
+                  'is-invalid': errorMsgs['medicalConditionsDetails']
+                }"
               ></textarea>
               <label for="medicalConditionsDetails">Comments</label>
+              <div
+                *ngIf="errorMsgs['medicalConditionsDetails']"
+                class="text-danger"
+              >
+                {{ errorMsgs['medicalConditionsDetails'] }}
+              </div>
             </div>
           </div>
         </div>
@@ -65,6 +76,7 @@
                 id="medications-yes"
                 formControlName="medications"
                 value="yes"
+                [ngClass]="{ 'is-invalid': errorMsgs['medications'] }"
               />
               <label class="form-check-label" for="medications-yes">Yes</label>
             </div>
@@ -75,6 +87,7 @@
                 id="medications-no"
                 formControlName="medications"
                 value="no"
+                [ngClass]="{ 'is-invalid': errorMsgs['medications'] }"
               />
               <label class="form-check-label" for="medications-no">No</label>
             </div>
@@ -90,8 +103,12 @@
                 placeholder="Comments"
                 formControlName="medicationsDetails"
                 rows="6"
+                [ngClass]="{ 'is-invalid': errorMsgs['medicationsDetails'] }"
               ></textarea>
               <label for="medicationsDetails">Comments</label>
+              <div *ngIf="errorMsgs['medicationsDetails']" class="text-danger">
+                {{ errorMsgs['medicationsDetails'] }}
+              </div>
             </div>
           </div>
         </div>
@@ -109,6 +126,7 @@
                 id="allergies-yes"
                 formControlName="allergies"
                 value="yes"
+                [ngClass]="{ 'is-invalid': errorMsgs['allergies'] }"
               />
               <label class="form-check-label" for="allergies-yes">Yes</label>
             </div>
@@ -119,6 +137,7 @@
                 id="allergies-no"
                 formControlName="allergies"
                 value="no"
+                [ngClass]="{ 'is-invalid': errorMsgs['allergies'] }"
               />
               <label class="form-check-label" for="allergies-no">No</label>
             </div>
@@ -135,8 +154,12 @@
                 placeholder="Comments"
                 formControlName="allergiesDetails"
                 rows="6"
+                [ngClass]="{ 'is-invalid': errorMsgs['allergiesDetails'] }"
               ></textarea>
               <label for="allergiesDetails">Comments</label>
+              <div *ngIf="errorMsgs['allergiesDetails']" class="text-danger">
+                {{ errorMsgs['allergiesDetails'] }}
+              </div>
             </div>
           </div>
         </div>
@@ -155,6 +178,7 @@
                 id="vaccinated-yes"
                 formControlName="vaccinated"
                 value="yes"
+                [ngClass]="{ 'is-invalid': errorMsgs['vaccinated'] }"
               />
               <label class="form-check-label" for="vaccinated-yes">Yes</label>
             </div>
@@ -165,6 +189,7 @@
                 id="vaccinated-no"
                 formControlName="vaccinated"
                 value="no"
+                [ngClass]="{ 'is-invalid': errorMsgs['vaccinated'] }"
               />
               <label class="form-check-label" for="vaccinated-no">No</label>
             </div>
@@ -180,8 +205,12 @@
                 placeholder="Comments"
                 formControlName="vaccinatedDetails"
                 rows="6"
+                [ngClass]="{ 'is-invalid': errorMsgs['vaccinatedDetails'] }"
               ></textarea>
               <label for="vaccinatedDetails">Comments</label>
+              <div *ngIf="errorMsgs['vaccinatedDetails']" class="text-danger">
+                {{ errorMsgs['vaccinatedDetails'] }}
+              </div>
             </div>
           </div>
         </div>
@@ -200,6 +229,7 @@
                 id="surgeries-yes"
                 formControlName="surgeries"
                 value="yes"
+                [ngClass]="{ 'is-invalid': errorMsgs['surgeries'] }"
               />
               <label class="form-check-label" for="surgeries-yes">Yes</label>
             </div>
@@ -210,6 +240,7 @@
                 id="surgeries-no"
                 formControlName="surgeries"
                 value="no"
+                [ngClass]="{ 'is-invalid': errorMsgs['surgeries'] }"
               />
               <label class="form-check-label" for="surgeries-no">No</label>
             </div>
@@ -225,8 +256,12 @@
                 placeholder="Comments"
                 formControlName="surgeriesDetails"
                 rows="6"
+                [ngClass]="{ 'is-invalid': errorMsgs['surgeriesDetails'] }"
               ></textarea>
               <label for="surgeriesDetails">Comments</label>
+              <div *ngIf="errorMsgs['surgeriesDetails']" class="text-danger">
+                {{ errorMsgs['surgeriesDetails'] }}
+              </div>
             </div>
           </div>
         </div>
@@ -246,6 +281,7 @@
                 id="accommodations-yes"
                 formControlName="accommodations"
                 value="yes"
+                [ngClass]="{ 'is-invalid': errorMsgs['accommodations'] }"
               />
               <label class="form-check-label" for="accommodations-yes"
                 >Yes</label
@@ -257,6 +293,7 @@
                 class="form-check-input"
                 id="accommodations-no"
                 formControlName="accommodations"
+                [ngClass]="{ 'is-invalid': errorMsgs['accommodations'] }"
                 value="no"
               />
               <label class="form-check-label" for="accommodations-no">No</label>
@@ -272,9 +309,16 @@
                 id="accommodationsDetails"
                 placeholder="Comments"
                 formControlName="accommodationsDetails"
+                [ngClass]="{ 'is-invalid': errorMsgs['accommodationsDetails'] }"
                 rows="6"
               ></textarea>
               <label for="accommodationsDetails">Comments</label>
+              <div
+                *ngIf="errorMsgs['accommodationsDetails']"
+                class="text-danger"
+              >
+                {{ errorMsgs['accommodationsDetails'] }}
+              </div>
             </div>
           </div>
         </div>
