@@ -29,7 +29,7 @@ import {
   ],
 })
 export class PersonalDetailsComponent implements OnInit {
-  applicantId: string = '3a8b6227-32b9-08dd-b4b4-ab30a82df10a';
+  applicantId: string = '83502019-57ad-08dd-1f71-0012bd8c392e';
   personalDetails$: Observable<PersonalDetails>;
 
   constructor(private store: Store) {
