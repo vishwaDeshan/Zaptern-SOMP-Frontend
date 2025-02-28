@@ -6,6 +6,11 @@
     border-color: $text-error-color !important;
 }
 
+.is-invalid:focus {
+    border-color: $text-error-color !important;
+    box-shadow: 0 0 0 0.22rem $error-box-shadow-color !important;
+}
+
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
